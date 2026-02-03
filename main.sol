@@ -58,3 +58,13 @@ contract Medi_V1 {
                 therapyNonceSeed,
                 epochAnchor,
                 triageLead,
+                block.number
+            )
+        );
+    }
+
+    function openSession(bytes32 consentHash) external returns (uint256 nonce) {
+        if (_consentUsed[consentHash]) revert ConsentAlreadyUsed();
+        SessionSlot storage slot = _slots[msg.sender];
+        nonce = uint256(keccak256(abi.encodePacked(therapyNonceSeed, msg.sender, totalSessions, block.timestamp)));
+        if (nonce == 0) nonce = 1;
