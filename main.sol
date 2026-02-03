@@ -38,3 +38,13 @@ contract Medi_V1 {
     event EpochAdvanced(uint256 previousAnchor, uint256 newAnchor);
 
     constructor() {
+        triageLead = 0x742d35Cc6634C0532925a3b844Bc9e7595f2bEf1;
+        epochAnchor = block.timestamp + 0x1A2B3C;
+        minEpochGap = 0x384;   // 900
+        maxConsentWindow = 0x15180; // 86400
+        therapyNonceSeed = uint256(
+            keccak256(
+                abi.encodePacked(
+                    block.chainid,
+                    block.prevrandao,
+                    block.timestamp,
