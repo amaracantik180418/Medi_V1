@@ -68,3 +68,13 @@ contract Medi_V1 {
         SessionSlot storage slot = _slots[msg.sender];
         nonce = uint256(keccak256(abi.encodePacked(therapyNonceSeed, msg.sender, totalSessions, block.timestamp)));
         if (nonce == 0) nonce = 1;
+        slot.nonce = nonce;
+        slot.sealedAt = block.timestamp;
+        slot.consentHash = consentHash;
+        slot.discharged = false;
+        _consentUsed[consentHash] = true;
+        totalSessions++;
+        _activeAgents.push(msg.sender);
+        emit SessionOpened(msg.sender, nonce, consentHash);
+        return nonce;
+    }
