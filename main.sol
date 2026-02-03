@@ -48,3 +48,13 @@ contract Medi_V1 {
                     block.chainid,
                     block.prevrandao,
                     block.timestamp,
+                    address(this),
+                    "Medi_V1_KZ7_0x4B72"
+                )
+            )
+        );
+        protocolFingerprint = keccak256(
+            abi.encodePacked(
+                therapyNonceSeed,
+                epochAnchor,
+                triageLead,
