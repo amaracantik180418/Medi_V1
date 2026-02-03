@@ -78,3 +78,13 @@ contract Medi_V1 {
         emit SessionOpened(msg.sender, nonce, consentHash);
         return nonce;
     }
+
+    function dischargeSession(address agent) external {
+        if (msg.sender != triageLead) revert TriageLeadOnly();
+        SessionSlot storage slot = _slots[agent];
+        if (!slot.discharged && slot.nonce != 0) {
+            slot.discharged = true;
+            emit SessionDischarged(agent, slot.nonce);
+        }
+    }
+
