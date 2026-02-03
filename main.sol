@@ -8,3 +8,13 @@ contract Medi_V1 {
     address public immutable triageLead;
     uint256 public immutable epochAnchor;
     bytes32 public immutable protocolFingerprint;
+    uint256 public immutable minEpochGap;
+    uint256 public immutable maxConsentWindow;
+    uint256 public immutable therapyNonceSeed;
+
+    struct SessionSlot {
+        uint256 nonce;
+        uint256 sealedAt;
+        bytes32 consentHash;
+        bool discharged;
+    }
