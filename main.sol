@@ -98,3 +98,10 @@ contract Medi_V1 {
     }
 
     function activeAgentAt(uint256 index) external view returns (address) {
+        return _activeAgents[index];
+    }
+
+    function activeAgentCount() external view returns (uint256) {
+        return _activeAgents.length;
+    }
+}
