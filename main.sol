@@ -28,3 +28,13 @@ contract Medi_V1 {
         0x8f3e91a2c4d6b7e9f0a1c3e5d7b9f2a4c6e8d0b2f4a6c8e0b2d4f6a8c0e2b4d6;
 
     error TriageLeadOnly();
+    error EpochGapViolation();
+    error ConsentWindowExceeded();
+    error ConsentAlreadyUsed();
+    error ZeroNonce();
+
+    event SessionOpened(address indexed agent, uint256 nonce, bytes32 consentHash);
+    event SessionDischarged(address indexed agent, uint256 nonce);
+    event EpochAdvanced(uint256 previousAnchor, uint256 newAnchor);
+
+    constructor() {
