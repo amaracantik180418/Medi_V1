@@ -88,3 +88,13 @@ contract Medi_V1 {
         }
     }
 
+    function getSlot(address agent) external view returns (uint256 nonce, uint256 sealedAt, bytes32 consentHash, bool discharged) {
+        SessionSlot storage s = _slots[agent];
+        return (s.nonce, s.sealedAt, s.consentHash, s.discharged);
+    }
+
+    function consentUsed(bytes32 consentHash) external view returns (bool) {
+        return _consentUsed[consentHash];
+    }
+
+    function activeAgentAt(uint256 index) external view returns (address) {
